@@ -1,0 +1,101 @@
+.education-section {
+  background: var(--dark);
+}
+
+.education-card {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.education-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.education-icon {
+  font-size: 4rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.education-info {
+  flex: 1;
+}
+
+.education-info h3 {
+  font-size: 2.5rem;
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.education-major {
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  margin-bottom: 0.3rem;
+}
+
+.education-university {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.education-date {
+  padding: 0.8rem 1.5rem;
+  background: rgba(102, 126, 234, 0.15);
+  border-radius: 50px;
+  color: var(--primary);
+  font-weight: 600;
+  border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+.education-highlights h4 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.highlights-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border-left: 3px solid var(--primary);
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.highlight-item:hover {
+  background: rgba(102, 126, 234, 0.1);
+  border-left-color: var(--secondary);
+}
+
+.highlight-icon {
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .education-header {
+    flex-direction: column;
+  }
+  
+  .education-card {
+    padding: 2rem 1.5rem;
+  }
+}
