@@ -10,20 +10,14 @@ const Achievements = () => {
     {
       title: 'Global Rank 14,311 on Unstop',
       icon: '🏆',
-      description: 'Achieved impressive ranking with 81,136 points and 40 certificates on Unstop Live Leaderboard.',
-      stats: ['81,136 Points', '40 Certificates', 'Global Ranking']
+      description: 'Achieved impressive ranking with 82,296 points and 40 certificates on Unstop Live Leaderboard.',
+      stats: ['82,296 Points', '40 Certificates', 'Global Ranking']
     },
     {
       title: 'Smart India Hackathon 2025',
       icon: '🥈',
       description: 'Qualified for prelims and secured Runner-Up position in one of India\'s largest hackathons.',
       stats: ['Runner-Up', 'National Level', 'Innovation Award']
-    },
-    {
-      title: 'Top 5% Academic Performance',
-      icon: '🎓',
-      description: 'Consistently maintained position among top 5% at JECRC University.',
-      stats: ['Top 5%', 'CS Engineering', 'Academic Excellence']
     }
   ];
 

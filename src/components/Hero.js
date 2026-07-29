@@ -1,182 +1,99 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { Download, Calendar, Briefcase, Code2, BrainCircuit } from 'lucide-react';
 import './Hero.css';
 
 const Hero = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
+      transition: { staggerChildren: 0.2, delayChildren: 0.1 }
+    }
   };
 
   const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99],
-      },
-    },
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
+
+  const stats = [
+    { icon: <Calendar size={24} />, num: "2+", label: "Months Industry Experience" },
+    { icon: <Briefcase size={24} />, num: "10+", label: "Projects Built" },
+    { icon: <Code2 size={24} />, num: "150+", label: "LeetCode Problems" },
+    { icon: <BrainCircuit size={24} />, num: "AI", label: "GenAI & ML Focus" },
+  ];
+
+  const scrollToSection = (id, e) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({ top: element.offsetTop - 20, behavior: 'smooth' });
+    }
   };
 
   return (
-    <section id="home" className="hero" ref={ref}>
-      <div className="hero-container">
-        <motion.div
-          className="hero-content"
+    <section id="home" className="hero-area">
+      <div className="custom-container">
+        
+        {/* Top Action Bar */}
+        <motion.div 
+          className="hero-action-bar"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="status-card">
+            <span className="online-dot pulsing"></span>
+            Open to Opportunities
+          </div>
+          <a href="/Samarth_Jain_Resume.pdf" download="Samarth_Jain_Resume.pdf" className="resume-card">
+            Download Resume <Download size={18} />
+          </a>
+        </motion.div>
+
+        {/* Main Content */}
+        <motion.div 
+          className="hero-main-content"
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate="visible"
         >
+          <motion.span className="hero-subtitle" variants={itemVariants}>
+            HELLO, I'M
+          </motion.span>
           
-
-          {/* Name with Glitch Effect */}
-          <motion.h1 variants={itemVariants} className="hero-name">
-            <span className="name-text" data-text="Samarth Jain">
-              Samarth Jain
-            </span>
+          <motion.h1 variants={itemVariants}>
+            Samarth Jain.<br />
+            <span className="highlight">AI Engineer</span> &<br />
+            Full-Stack Developer.
           </motion.h1>
-
-          {/* Animated Title */}
-          <motion.div variants={itemVariants} className="hero-title">
-            <span className="title-highlight">CS Student</span>
-            <span className="title-separator">×</span>
-            <span className="title-highlight">Developer</span>
-            <span className="title-separator">×</span>
-            <span className="title-highlight">AI Enthusiast</span>
-          </motion.div>
-
-          {/* Description */}
-          <motion.p variants={itemVariants} className="hero-description">
-            Crafting innovative solutions with AI & Full-Stack Development.
-            <br />
-            Currently building the future, one line of code at a time.
+          
+          <motion.p className="hero-description" variants={itemVariants}>
+            I build robust, scalable full-stack web applications and integrate Machine Learning and AI into practical solutions.
           </motion.p>
 
-          {/* Contact Info Pills */}
-          <motion.div variants={itemVariants} className="hero-contact-pills">
-            <motion.a 
-              href="tel:+917878908050"
-              className="contact-pill"
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="pill-icon">📱</span>
-              <span>+91-787-890-8050</span>
-            </motion.a>
-            <motion.a 
-              href="mailto:samarthjain.cse@gmail.com"
-              className="contact-pill"
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="pill-icon">✉️</span>
-              <span>samarthjain.cse@gmail.com</span>
-            </motion.a>
+          {/* Call To Action Buttons */}
+          <motion.div className="hero-cta" variants={itemVariants}>
+            <a href="#projects" onClick={(e) => scrollToSection('projects', e)} className="theme-btn">View Projects</a>
+            <a href="#contact" onClick={(e) => scrollToSection('contact', e)} className="theme-btn">Contact Me</a>
           </motion.div>
 
-          {/* CTA Buttons */}
-          <motion.div variants={itemVariants} className="hero-cta">
-            <motion.button
-              className="btn btn-primary hero-btn"
-              onClick={scrollToContact}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Let's Connect
-              <span className="btn-arrow">→</span>
-            </motion.button>
-            <motion.a
-              href="#projects"
-              className="btn btn-outline hero-btn"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View Work
-              <span className="btn-arrow">↓</span>
-            </motion.a>
+          {/* Quick Stats Grid */}
+          <motion.div className="quick-stats-grid" variants={itemVariants}>
+            {stats.map((stat, idx) => (
+              <div key={idx} className="stat-card">
+                <div className="stat-icon">{stat.icon}</div>
+                <div className="stat-info">
+                  <h3>{stat.num}</h3>
+                  <p>{stat.label}</p>
+                </div>
+              </div>
+            ))}
           </motion.div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            className="scroll-indicator"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.8 }}
-          >
-            <div className="scroll-mouse">
-              <div className="scroll-wheel"></div>
-            </div>
-            <p>Scroll to explore</p>
-          </motion.div>
+          
         </motion.div>
 
-        {/* Animated 3D Element */}
-        <motion.div
-          className="hero-3d-element"
-          initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 1.2, ease: 'easeOut' }}
-        >
-          <div className="cube">
-            <div className="cube-face front">💻</div>
-            <div className="cube-face back">🚀</div>
-            <div className="cube-face right">⚡</div>
-            <div className="cube-face left">🎯</div>
-            <div className="cube-face top">🌟</div>
-            <div className="cube-face bottom">✨</div>
-          </div>
-        </motion.div>
-
-        {/* Floating Stats */}
-        <motion.div
-          className="floating-stats"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-        >
-          <motion.div 
-            className="stat-card"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-          >
-            <div className="stat-value">Top 5%</div>
-            <div className="stat-label">Academic Rank</div>
-          </motion.div>
-          <motion.div 
-            className="stat-card"
-            whileHover={{ scale: 1.1, rotate: -5 }}
-          >
-            <div className="stat-value">40+</div>
-            <div className="stat-label">Certificates</div>
-          </motion.div>
-          <motion.div 
-            className="stat-card"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-          >
-            <div className="stat-value">81K+</div>
-            <div className="stat-label">Unstop Points</div>
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   );

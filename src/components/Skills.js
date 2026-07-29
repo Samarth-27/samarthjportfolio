@@ -6,89 +6,85 @@ import './Skills.css';
 const Skills = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
-  const skillCategories = [
+  const services = [
+    { title: 'Web Development', desc: 'React, Node.js, Express, MongoDB' },
+    { title: 'Machine Learning', desc: 'Python, Generative AI, Data Science' },
+    { title: 'Software Engineering', desc: 'Automation, APIs, Cloud Deployments' }
+  ];
+
+  const stack = [
     {
-      title: 'Programming Languages',
-      icon: '💻',
-      skills: ['Java', 'Python', 'JavaScript'],
-      color: 'var(--gradient-1)'
+      category: 'Frontend',
+      skills: ['React', 'JavaScript', 'HTML5', 'CSS3']
     },
     {
-      title: 'Web Development',
-      icon: '🌐',
-      skills: ['HTML', 'CSS', 'JavaScript', 'React'],
-      color: 'var(--gradient-2)'
+      category: 'Backend',
+      skills: ['Node.js', 'Express.js', 'MongoDB', 'SQL']
     },
     {
-      title: 'Data Structures & Algorithms',
-      icon: '📊',
-      skills: ['Arrays', 'Linked Lists', 'Stacks', 'Queues', 'Trees', 'Sorting', 'Searching'],
-      color: 'var(--gradient-3)'
+      category: 'AI & Data',
+      skills: ['Python', 'Generative AI', 'LangChain', 'RAG']
     },
     {
-      title: 'Cloud & AI',
-      icon: '☁️',
-      skills: ['Google Cloud Platform', 'NLP', 'Machine Learning', 'OpenAI API', 'LangChain'],
-      color: 'var(--gradient-4)'
-    },
-    {
-      title: 'Tools & Technologies',
-      icon: '🛠️',
-      skills: ['Chart.js', 'Context API', 'Framer Motion', 'LocalStorage'],
-      color: 'var(--gradient-1)'
-    },
-    {
-      title: 'Other Skills',
-      icon: '⚡',
-      skills: ['Problem Solving', 'Debugging', 'SDLC'],
-      color: 'var(--gradient-2)'
+      category: 'Tools',
+      skills: ['Git', 'GitHub', 'Docker']
     }
   ];
 
   return (
     <section id="skills" className="skills-section" ref={ref}>
-      <div className="container">
-        <motion.h2 className="section-title"
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}>
-          Technical Skills
-        </motion.h2>
-
-        <p className="section-subtitle">
-          Technologies and tools I work with to bring ideas to life
-        </p>
-
+      <div className="skills-inner">
         <div className="skills-grid">
-          {skillCategories.map((category, index) => (
-            <motion.div
-              key={index}
-              className="skill-category-card"
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.02, y: -5 }}>
-              
-              <div className="category-header">
-                <span className="category-icon">{category.icon}</span>
-                <h3>{category.title}</h3>
-              </div>
+          {/* Services Column */}
+          <div className="services-col">
+            <motion.h3 className="sub-title"
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}>
+              Services
+            </motion.h3>
+            <div className="services-list">
+              {services.map((svc, idx) => (
+                <motion.div 
+                  key={idx} 
+                  className="service-box"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.1 * idx }}>
+                  <h4>{svc.title}</h4>
+                  <p>{svc.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
 
-              <div className="skills-tags">
-                {category.skills.map((skill, idx) => (
-                  <motion.span
-                    key={idx}
-                    className="skill-tag"
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    transition={{ type: 'spring', stiffness: 400 }}>
-                    {skill}
-                  </motion.span>
-                ))}
-              </div>
+          {/* Stack Column */}
+          <div className="stack-col">
+            <motion.h3 className="sub-title"
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}>
+              Tech Stack
+            </motion.h3>
+            <div className="stack-groups">
+              {stack.map((group, idx) => (
+                <motion.div 
+                  key={idx} 
+                  className="stack-group"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.1 * idx }}>
+                  <h4 className="stack-category-title">{group.category}</h4>
+                  <div className="stack-list">
+                    {group.skills.map((item, sIdx) => (
+                      <span key={sIdx} className="stack-tag">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
 
-              <div className="category-glow" style={{ background: category.color, opacity: 0.1 }}></div>
-            </motion.div>
-          ))}
         </div>
       </div>
     </section>

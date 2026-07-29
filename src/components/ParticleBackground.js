@@ -26,7 +26,7 @@ const ParticleBackground = () => {
         this.size = Math.random() * 3 + 1;
         this.speedX = Math.random() * 0.5 - 0.25;
         this.speedY = Math.random() * 0.5 - 0.25;
-        this.color = `rgba(${102 + Math.random() * 50}, ${126 + Math.random() * 50}, ${234 + Math.random() * 50}, ${Math.random() * 0.5})`;
+        this.color = `rgba(${102 + Math.random() * 50}, ${126 + Math.random() * 50}, ${234 + Math.random() * 50}, ${Math.random() * 0.3})`;
       }
 
       update() {
@@ -72,7 +72,7 @@ const ParticleBackground = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 120) {
-            ctx.strokeStyle = `rgba(102, 126, 234, ${0.15 * (1 - distance / 120)})`;
+            ctx.strokeStyle = `rgba(102, 126, 234, ${0.08 * (1 - distance / 120)})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);

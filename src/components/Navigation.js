@@ -1,120 +1,79 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 import './Navigation.css';
+import { Mail } from 'lucide-react';
 
 const Navigation = ({ activeSection }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
   const navItems = [
-    { id: 'home', label: 'Home', icon: '🏠' },
-    { id: 'about', label: 'About', icon: '👤' },
-    { id: 'education', label: 'Education', icon: '🎓' },
-    { id: 'skills', label: 'Skills', icon: '⚡' },
-    { id: 'projects', label: 'Projects', icon: '💼' },
-    { id: 'certifications', label: 'Certs', icon: '📜' },
-    { id: 'achievements', label: 'Wins', icon: '🏆' },
-    { id: 'contact', label: 'Contact', icon: '📬' }
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'certifications', label: 'Certifications' },
+    { id: 'contact', label: 'Contact' }
   ];
 
-  const scrollToSection = (id) => {
+  const scrollToSection = (id, e) => {
+    e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setIsOpen(false);
+      window.scrollTo({
+        top: element.offsetTop - 20,
+        behavior: 'smooth'
+      });
     }
   };
 
   return (
-    <>
-      <motion.nav 
-        className="navigation"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-      >
-        <div className="nav-container">
-          <motion.div 
-            className="nav-logo"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            onClick={() => scrollToSection('home')}
-          >
+    <div className="sticky-sidebar">
+      <div className="sticky-sidebar-inner">
+        <div className="sidebar-top">
+          <div className="sidebar-logo">
             <span className="logo-text">SJ</span>
-            <div className="logo-orbit"></div>
-          </motion.div>
+          </div>
 
-          {/* Desktop Navigation */}
-          <ul className="nav-links">
-            {navItems.map((item, index) => (
-              <motion.li
-                key={item.id}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-              >
-                <button
-                  onClick={() => scrollToSection(item.id)}
-                  className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
-                >
-                  <span className="nav-icon">{item.icon}</span>
-                  <span className="nav-label">{item.label}</span>
-                  {activeSection === item.id && (
-                    <motion.div
-                      className="active-indicator"
-                      layoutId="activeIndicator"
-                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                </button>
-              </motion.li>
-            ))}
-          </ul>
+          <div className="sidebar-me">
+            <div className="sidebar-me-inner">
+              <div className="img-box">
+                {/* Fallback to initials if no image is available, but let's assume logo192.png works */}
+                <img src="/Profile/WhatsApp Image 2026-05-19 at 8.16.03 PM.jpeg" alt="Samarth Jain" />
+              </div>
+              <div className="content">
+                <h3>Samarth Jain</h3>
+                <p>AI Engineer</p>
+                <p>Full-Stack Developer</p>
+              </div>
+            </div>
+          </div>
 
-          {/* Mobile Menu Button */}
-          <button 
-            className={`menu-toggle ${isOpen ? 'open' : ''}`}
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+          <div className="menu-lists">
+            <ul>
+              {navItems.map((item) => (
+                <li key={item.id} className={activeSection === item.id ? 'active-menu' : ''}>
+                  <a href={`#${item.id}`} onClick={(e) => scrollToSection(item.id, e)}>
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </motion.nav>
 
-      {/* Mobile Menu */}
-      <motion.div
-        className={`mobile-menu ${isOpen ? 'open' : ''}`}
-        initial={{ x: '100%' }}
-        animate={{ x: isOpen ? 0 : '100%' }}
-        transition={{ type: 'spring', damping: 20 }}
-      >
-        <ul className="mobile-nav-links">
-          {navItems.map((item) => (
-            <motion.li
-              key={item.id}
-              whileHover={{ x: 10 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <button
-                onClick={() => scrollToSection(item.id)}
-                className={`mobile-nav-link ${activeSection === item.id ? 'active' : ''}`}
-              >
-                <span className="nav-icon">{item.icon}</span>
-                <span className="nav-label">{item.label}</span>
-              </button>
-            </motion.li>
-          ))}
-        </ul>
-      </motion.div>
-
-      {/* Mobile Menu Overlay */}
-      {isOpen && (
-        <div 
-          className="mobile-menu-overlay" 
-          onClick={() => setIsOpen(false)}
-        />
-      )}
-    </>
+        <div className="sidebar-bottom">
+          <div className="social-link-wrap">
+            <ul className="social-links">
+              <li><a href="https://github.com/Samarth-27" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></li>
+              <li><a href="https://linkedin.com/in/samarjai8685" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a></li>
+              <li><a href="mailto:samarthjain.cse@gmail.com" target="_blank" rel="noopener noreferrer"><Mail size={18} /></a></li>
+            </ul>
+          </div>
+          <p className="copyright-text">
+            Designed & Developed by<br />
+            Samarth Jain © 2026
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 
