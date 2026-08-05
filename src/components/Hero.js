@@ -47,7 +47,13 @@ const Hero = () => {
             <span className="online-dot pulsing"></span>
             Open to Opportunities
           </div>
-          <a href="/Samarth_Jain_Resume.pdf" download="Samarth_Jain_Resume.pdf" className="resume-card">
+          <a 
+            href={`${process.env.PUBLIC_URL}/Samarth_Jain_Resume.pdf`} 
+            download="Samarth_Jain_Resume.pdf" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="resume-card"
+          >
             Download Resume <Download size={18} />
           </a>
         </motion.div>
