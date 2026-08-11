@@ -10,9 +10,9 @@ const Projects = () => {
     {
       title: 'AI Hiring Assistant',
       subtitle: 'AI Recruitment System',
-      image: 'https://github.com/Samarth-27/Celebal-CEI/blob/main/AI-Hiring-Assistant/assets/candidate_portal_1.png',
+      image: 'https://raw.githubusercontent.com/Samarth-27/Celebal-CEI/main/AI-Hiring-Assistant/assets/candidate_portal_1.png',
       year: '2026',
-      demoLink: 'https://github.com/Samarth-27/Celebal-CEI/tree/main/AI-Hiring-Assistant'
+      demoLink: 'https://ai-hiring-assistant01.streamlit.app/'
     },
     {
       title: 'StayTrack',
