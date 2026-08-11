@@ -8,6 +8,13 @@ const Projects = () => {
 
   const projects = [
     {
+      title: 'AI Hiring Assistant',
+      subtitle: 'AI Recruitment System',
+      image: 'https://github.com/Samarth-27/Celebal-CEI/blob/main/AI-Hiring-Assistant/assets/candidate_portal_1.png',
+      year: '2026',
+      demoLink: 'https://github.com/Samarth-27/Celebal-CEI/tree/main/AI-Hiring-Assistant'
+    },
+    {
       title: 'StayTrack',
       subtitle: 'Hostel Management',
       image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=400&q=80',
@@ -27,13 +34,6 @@ const Projects = () => {
       image: process.env.PUBLIC_URL + '/projects/evolve-x.png',
       year: '2026',
       demoLink: 'https://evolve-x-sams-projects-1b56e3de.vercel.app/'
-    },
-    {
-      title: 'RAG Document QA',
-      subtitle: 'AI Chatbot',
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=400&q=80',
-      year: '2026',
-      demoLink: 'https://github.com/Samarth-27/RAG_Document_Question_Answering'
     }
   ];
   return (
