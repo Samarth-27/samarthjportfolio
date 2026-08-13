@@ -128,11 +128,11 @@ main {
 
 @media (max-width: 991px) {
   .page-content-wrapper {
-    width: 100%;
-    margin-left: 0;
+    width: calc(100% - 110px);
+    margin-left: auto;
   }
 
   main {
-    padding: 18px;
+    padding: 10px;
   }
 }
