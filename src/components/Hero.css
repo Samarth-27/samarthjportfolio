@@ -103,9 +103,7 @@
 }
 
 .hero-main-content h1 .highlight {
-  background: linear-gradient(90deg, #fff, var(--accent-cyan));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--accent-cyan);
 }
 
 .hero-description {
@@ -189,7 +187,7 @@
   }
   
   .hero-main-content h1 {
-    font-size: 42px;
+    font-size: 28px;
     letter-spacing: -1px;
   }
   
