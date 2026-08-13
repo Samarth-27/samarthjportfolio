@@ -6,7 +6,8 @@
   padding: 30px 40px !important;
   position: relative;
   z-index: 2;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
 }
