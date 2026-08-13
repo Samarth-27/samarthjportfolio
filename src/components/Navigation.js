@@ -35,6 +35,7 @@ const Navigation = ({ activeSection }) => {
           <div className="sidebar-me">
             <div className="sidebar-me-inner">
               <div className="img-box">
+                {/* Fallback to initials if no image is available, but let's assume logo192.png works */}
                 <img src="/Profile/WhatsApp Image 2026-05-19 at 8.16.03 PM.jpeg" alt="Samarth Jain" />
               </div>
               <div className="content">
